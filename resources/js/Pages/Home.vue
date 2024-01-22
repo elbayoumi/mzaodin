@@ -52,7 +52,14 @@ const form = useForm({
 const submit = () => {
     form.post(route('login'), {
         onFinish: () => form.reset('password'),
+
     });
+    const loginSuccessful = true;
+
+if (loginSuccessful) {
+    // Close the modal using jQuery
+    $('#loginModal').modal('hide');
+}
 };
 </script>
 
@@ -63,9 +70,18 @@ const submit = () => {
 
         <nav>
             <div class=" main-nav d-flex justify-content-around navbar navbar-expand-lg navbar-light bg-white ">
-                <section class="d-flex">
-                    <a class="login navbar-brand btn btn-main text-white d-none d-lg-block" href="#" data-toggle="modal"
+                <section v-if="canLogin" class="d-flex" >
+                    <Link
+                v-if="$page.props.auth.user"
+                :href="route('dashboard')"
+                class="login navbar-brand btn btn-main text-white d-none d-lg-block"
+                >Dashboard</Link
+            >
+            <template v-else>
+
+                    <a  class="login navbar-brand btn btn-main text-white d-none d-lg-block" href="#" data-toggle="modal"
                         data-target="#loginModal">تسجيل الدخول</a>
+            </template>
                     <!-- <Link
                     :href="route('login')"
                     class="login navbar-brand btn btn-main text-white d-none d-lg-block"
@@ -151,12 +167,12 @@ const submit = () => {
                                 </div>
                                 <div class="form-group">
 
-                    <InputLabel for="password" value="كلمة المرور" />
+                                    <InputLabel for="password" value="كلمة المرور" />
 
-<TextInput id="password" type="password" class="form-control" v-model="form.password" required
-    autocomplete="current-password"   placeholder="ادخل كلمة المرور"/>
+                                    <TextInput id="password" type="password" class="form-control" v-model="form.password"
+                                        required autocomplete="current-password" placeholder="ادخل كلمة المرور" />
 
-<InputError class="mt-2" :message="form.errors.password" />
+                                    <InputError class="mt-2" :message="form.errors.password" />
                                     <!-- <label for="password">كلمة المرور</label>
                                     <input type="password" class="form-control" id="password"
                                         placeholder="ادخل كلمة المرور"> -->
