@@ -1,5 +1,12 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+// import { Head, Link } from '@inertiajs/vue3';
+import Checkbox from '@/Components/Checkbox.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 
 defineProps({
     canLogin: {
@@ -27,9 +34,26 @@ defineProps({
         type: Boolean,
     },
 
-
+    canResetPassword: {
+        type: Boolean,
+    },
+    status: {
+        type: String,
+    },
 });
 
+
+const form = useForm({
+    email: '',
+    password: '',
+    remember: false,
+});
+
+const submit = () => {
+    form.post(route('login'), {
+        onFinish: () => form.reset('password'),
+    });
+};
 </script>
 
 <template>
@@ -40,13 +64,13 @@ defineProps({
         <nav>
             <div class=" main-nav d-flex justify-content-around navbar navbar-expand-lg navbar-light bg-white ">
                 <section class="d-flex">
-                    <!-- <a class="login navbar-brand btn btn-main text-white d-none d-lg-block" href="#" data-toggle="modal"
-                        data-target="#loginModal">تسجيل الدخول</a> -->
-                        <Link
+                    <a class="login navbar-brand btn btn-main text-white d-none d-lg-block" href="#" data-toggle="modal"
+                        data-target="#loginModal">تسجيل الدخول</a>
+                    <!-- <Link
                     :href="route('login')"
                     class="login navbar-brand btn btn-main text-white d-none d-lg-block"
                     >تسجيل الدخول</Link
-                >
+                > -->
                     <img :src="assetPath(asset, 'cart-btn.png')" class="cart d-inline-block" alt="cart">
 
                 </section>
@@ -97,7 +121,7 @@ defineProps({
             <!-- Bootstrap Navigation Bar -->
 
 
-            <!-- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -115,20 +139,34 @@ defineProps({
                             <form @submit.prevent="submit">
                                 <div class="form-group">
 
-                                    <label for="username">اسم المستخدم</label>
-                                    <input type="text" class="form-control" id="username" placeholder="ادخل اسم المستخدم">
+                                    <InputLabel for="email" value="اسم المستخدم" />
+
+                                    <TextInput id="email" type="email" class="form-control" v-model="form.email" required
+                                        autofocus autocomplete="username" placeholder="ادخل اسم المستخدم" />
+
+                                    <InputError class="mt-2" :message="form.errors.email" />
+
+                                    <!-- <label for="username"></label> -->
+                                    <!-- <input type="text" class="form-control" id="username" placeholder="ادخل اسم المستخدم"> -->
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">كلمة المرور</label>
+
+                    <InputLabel for="password" value="كلمة المرور" />
+
+<TextInput id="password" type="password" class="form-control" v-model="form.password" required
+    autocomplete="current-password"   placeholder="ادخل كلمة المرور"/>
+
+<InputError class="mt-2" :message="form.errors.password" />
+                                    <!-- <label for="password">كلمة المرور</label>
                                     <input type="password" class="form-control" id="password"
-                                        placeholder="ادخل كلمة المرور">
+                                        placeholder="ادخل كلمة المرور"> -->
                                 </div>
                                 <button type="submit" class="btn btn-main">تسجيل الدخول</button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
 
             <div class=" mt-5 main">
 

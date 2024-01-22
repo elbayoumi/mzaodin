@@ -8,7 +8,7 @@ import { Link } from '@inertiajs/vue3';
         <div class="">
 
             <Link href="/">
-                <img src='http://127.0.0.1:8000/website/log-removebg-preview.png' class="w-100 d-inline-block ">
+                <img src='http://127.0.0.1:8000/website/log-removebg-preview.png' class="w-100 m-auto d-inline-block ">
                 <!-- <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" /> -->
             </Link>
         </div>
