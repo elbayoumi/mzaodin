@@ -20,6 +20,13 @@ defineProps({
         type: String,
         required: true,
     },
+    status: {
+        type: String,
+    },
+    canResetPassword: {
+        type: Boolean,
+    },
+
 
 });
 
@@ -33,8 +40,13 @@ defineProps({
         <nav>
             <div class=" main-nav d-flex justify-content-around navbar navbar-expand-lg navbar-light bg-white ">
                 <section class="d-flex">
-                    <a class="login navbar-brand btn btn-main text-white d-none d-lg-block" href="#" data-toggle="modal"
-                        data-target="#loginModal">تسجيل الدخول</a>
+                    <!-- <a class="login navbar-brand btn btn-main text-white d-none d-lg-block" href="#" data-toggle="modal"
+                        data-target="#loginModal">تسجيل الدخول</a> -->
+                        <Link
+                    :href="route('login')"
+                    class="login navbar-brand btn btn-main text-white d-none d-lg-block"
+                    >تسجيل الدخول</Link
+                >
                     <img :src="assetPath(asset, 'cart-btn.png')" class="cart d-inline-block" alt="cart">
 
                 </section>
@@ -85,7 +97,7 @@ defineProps({
             <!-- Bootstrap Navigation Bar -->
 
 
-            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+            <!-- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -100,10 +112,9 @@ defineProps({
                             <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
                                 {{ status }}
                             </div>
-                            <!-- Add your login form here -->
                             <form @submit.prevent="submit">
                                 <div class="form-group">
-                                    
+
                                     <label for="username">اسم المستخدم</label>
                                     <input type="text" class="form-control" id="username" placeholder="ادخل اسم المستخدم">
                                 </div>
@@ -117,7 +128,7 @@ defineProps({
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class=" mt-5 main">
 
