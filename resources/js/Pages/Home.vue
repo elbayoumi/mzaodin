@@ -56,10 +56,10 @@ const submit = () => {
     });
     const loginSuccessful = true;
 
-if (loginSuccessful) {
-    // Close the modal using jQuery
-    $('#loginModal').modal('hide');
-}
+    if (loginSuccessful) {
+        // Close the modal using jQuery
+        $('#loginModal').modal('hide');
+    }
 };
 </script>
 
@@ -70,18 +70,14 @@ if (loginSuccessful) {
 
         <nav>
             <div class=" main-nav d-flex justify-content-around navbar navbar-expand-lg navbar-light bg-white ">
-                <section v-if="canLogin" class="d-flex" >
-                    <Link
-                v-if="$page.props.auth.user"
-                :href="route('dashboard')"
-                class="login navbar-brand btn btn-main text-white d-none d-lg-block"
-                >Dashboard</Link
-            >
-            <template v-else>
+                <section v-if="canLogin" class="d-flex">
+                    <Link v-if="$page.props.auth.user" :href="route('dashboard')"
+                        class="login navbar-brand btn btn-main text-white d-none d-lg-block">Dashboard</Link>
+                    <template v-else>
 
-                    <a  class="login navbar-brand btn btn-main text-white d-none d-lg-block" href="#" data-toggle="modal"
-                        data-target="#loginModal">تسجيل الدخول</a>
-            </template>
+                        <a class="login navbar-brand btn btn-main text-white d-none d-lg-block" href="#" data-toggle="modal"
+                            data-target="#loginModal">تسجيل الدخول</a>
+                    </template>
                     <!-- <Link
                     :href="route('login')"
                     class="login navbar-brand btn btn-main text-white d-none d-lg-block"
@@ -121,9 +117,15 @@ if (loginSuccessful) {
                             <a class="nav-link main-text-color" href="#">الرئيسية</a>
                         </li>
                         <li class="nav-item d-lg-none">
-                            <a class="nav-link btn btn-main text-white" href="#" data-toggle="modal"
-                                data-target="#loginModal">تسجيل
-                                الدخول</a>
+                            <Link v-if="$page.props.auth.user" :href="route('dashboard')"
+                                class="nav-link btn btn-main text-white">Dashboard</Link>
+                            <template v-else>
+
+                                <a class="nav-link btn btn-main text-white" href="#" data-toggle="modal"
+                                    data-target="#loginModal">تسجيل
+                                    الدخول</a>
+                            </template>
+
                         </li>
                     </ul>
                 </div>
