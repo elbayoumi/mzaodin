@@ -124,6 +124,7 @@ const submit = () => {
                                 <a class="nav-link btn btn-main text-white" href="#" data-toggle="modal"
                                     data-target="#loginModal">تسجيل
                                     الدخول</a>
+
                             </template>
 
                         </li>
@@ -180,6 +181,12 @@ const submit = () => {
                                         placeholder="ادخل كلمة المرور"> -->
                                 </div>
                                 <button type="submit" class="btn btn-main">تسجيل الدخول</button>
+                                <Link
+                    v-if="canRegister"
+                    :href="route('register')"
+                    class="mx-2"
+                    >ليس لديك حساب قم  بالتسجيل الان</Link
+                >
                             </form>
                         </div>
                     </div>
