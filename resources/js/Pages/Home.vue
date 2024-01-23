@@ -389,7 +389,7 @@ const submit = () => {
                         <p>......................... 1</p>
                         <Link
                     v-if="canRegister"
-                    :href="route('register')" class="nav-link text-secondary" href="#"> التسجيل </Link>
+                    :href="route('register')" class="nav-link text-secondary"> التسجيل </Link>
                     </li>
 
                 </ul>
