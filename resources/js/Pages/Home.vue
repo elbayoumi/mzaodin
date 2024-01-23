@@ -387,7 +387,9 @@ const submit = () => {
                     </li>
                     <li class=" ">
                         <p>......................... 1</p>
-                        <a class="nav-link text-secondary" href="#"> التسجيل </a>
+                        <Link
+                    v-if="canRegister"
+                    :href="route('register')" class="nav-link text-secondary" href="#"> التسجيل </Link>
                     </li>
 
                 </ul>
